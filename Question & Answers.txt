@@ -2,34 +2,43 @@
 1. Data cleaning including missing values, outliers and multi-collinearity.
 
 2. Describe your fraud detection model in elaboration.
-Ans2. We have seen that Accuracy of both Random Forest and Decision Tree is equal, although teh precision of Random Forest is more. In a fraud detection model, Precision is highly important because rather than predicting normal transactions correctly we want Fraud transactions to be predicted correctly and Legit to be left off.If either of the 2 reasons are not fulfiiled we may catch the innocent and leave the culprit.
+Ans2. We have seen that Accuracy of both Random Forest and Decision Tree is equal, although teh precision of Random Forest is more. In a fraud detection model, 
+      Precision is highly important because rather than predicting normal transactions correctly we want Fraud transactions to be predicted correctly and Legit to 
+      be left off.If either of the 2 reasons are not fulfiiled we may catch the innocent and leave the culprit.
       This is also one of the reason why Random Forest and Decision Tree are used unstead of other algorithms.
       Also the reason I have chosen this model is because of highly unbalanced dataset (Legit: Fraud :: 99.87:0.13). 
-      Random forest makes multiple decision trees which makes it easier (although time taking) for model to understand the data in a simpler way since Decision Tree makes decisions in a boolean way.
+      Random forest makes multiple decision trees which makes it easier (although time taking) for model to understand the data in a simpler way since Decision 
+      Tree makes decisions in a boolean way.
       Models like XGBoost, Bagging, ANN, and Logistic Regression may give good accuracy but they wont give good precision and recall values.
 
 3. How did you select variables to be included in the model?
 Ans3. Variable selection is crucial for developing an effective fraud detection model. The following steps were used to select the variables:
       Domain Knowledge: Understanding the financial transactions and potential indicators of fraud. 
-                        Variables that are commonly associated with fraudulent behavior, such as unusual transaction amounts, frequency of transactions, and transaction locations, were prioritized.
+                        Variables that are commonly associated with fraudulent behavior, such as unusual transaction amounts, frequency of transactions, and 
+                        transaction locations, were prioritized.
       Correlation Analysis: Pearson correlation coefficient was used to identify highly correlated variables. 
                             Variables with high correlation (both positive and negative) to the target variable (fraudulent transactions) were considered.
       Feature Importance from Models: Using models like Random Forest, feature importance scores were generated. 
-                                      These scores indicate the contribution of each feature to the prediction model. Features with higher importance scores were selected.
+                                      These scores indicate the contribution of each feature to the prediction model. Features with higher importance scores were 
+                                    selected.
       Variance Inflation Factor (VIF): To address multi-collinearity, VIF was calculated for all features. 
                                        Features with a VIF above a threshold (e.g., 10) were considered to be highly collinear and were removed.
-      Recursive Feature Elimination (RFE): This technique was used to select the most relevant features by recursively fitting the model and removing the least important feature(s) at each step.
+      Recursive Feature Elimination (RFE): This technique was used to select the most relevant features by recursively fitting the model and removing the least 
+                                           important feature(s) at each step.
 
 4. Demonstrate the performance of the model by using best set of tools.
 Ans4. The performance of the model was evaluated using various metrics and techniques to ensure its effectiveness in detecting fraudulent transactions.
       Data Split: The dataset was split into training and validation sets (e.g., 80% training and 20% validation) to evaluate model performance.
       
       Model Selection and Training: 
-      Random Forest and Decision Tree were selected due to their ability to handle unbalanced datasets and provide high precision, which is critical in fraud detection.
+      Random Forest and Decision Tree were selected due to their ability to handle unbalanced datasets and provide high precision, which is critical in fraud 
+      detection.
       Hyperparameter Tuning: Techniques such as Grid Search or Random Search were used to fine-tune the hyperparameters of the models.
       
       Model Evaluation Metrics:
-      Precision and Recall: Precision is crucial in fraud detection as it measures the number of true positive results divided by the number of true positive and false positive results. Recall (sensitivity) is also important as it measures the number of true positive results divided by the number of true positives and false negatives.
+      Precision and Recall: Precision is crucial in fraud detection as it measures the number of true positive results divided by the number of true positive and 
+      false positive results. Recall (sensitivity) is also important as it measures the number of true positive results divided by the number of true positives and 
+      false negatives.
       F1 Score: The harmonic mean of precision and recall, providing a balance between the two.
       ROC-AUC Score: Measures the models ability to distinguish between classes, providing a single metric to compare model performance.
       
@@ -43,30 +52,39 @@ Ans4. The performance of the model was evaluated using various metrics and techn
       Performance metrics (precision, recall, F1 score, ROC-AUC) on the validation set were reported to demonstrate the models effectiveness.
       
 5. What are the key factors that predict fraudulent customer?
-Ans5. The source of request is secured or not ?
-      Is the name of organisation asking for money is legit or not ?
-      Transaction history of vendors.
+Ans5. Transaction Amount: Unusually high or low transaction amounts compared to typical behavior.
+      Frequency of Transactions: Sudden spikes in transaction frequency.
+      Transaction Location: Transactions from unusual or high-risk locations.
+      Device Used for Transactions: New or unrecognized devices being used for transactions.
+      Transaction Time: Transactions occurring at unusual times of the day.
+      Transaction History: Inconsistent or suspicious transaction history.
+      Source of Request: Whether the transaction request comes from a secure source.
+      Organization Legitimacy: Verifying if the organization involved is legitimate.
 
 6. Do these factors make sense? If yes, How? If not, How not?
-Ans6. Source of Request Secured or Not
-      Makes Sense: Secure sources are less likely to be associated with fraud. Unsecured sources can indicate potential phishing or unauthorized access.
-      
-      Legitimacy of the Organization Asking for Money
-      Makes Sense: Verifying the legitimacy of organizations helps identify fraudulent requests, as fraudsters often use fake names.
-      
-      Transaction History of Vendors
-      Makes Sense: Consistent and legitimate transaction histories indicate trustworthy vendors. Unusual patterns can be red flags for fraud.
-      
-      In summary, these factors are logical and relevant for predicting fraudulent transactions.
+Ans6. Yes, they make sense:
+
+      Transaction Amount: Large or small amounts can signal potential fraud.
+      Frequency of Transactions: Fraudsters often make multiple transactions in a short period.
+      Transaction Location: Unusual locations can indicate unauthorized access.
+      Device Used: New devices may signify a compromised account.
+      Transaction Time: Fraudulent activities often occur at odd hours.
+      Transaction History: Regular patterns indicate legitimacy; deviations can suggest fraud.
+      Source of Request: Secure sources are less likely to be fraudulent.
+      Organization Legitimacy: Fraudsters frequently use fake or unknown organizations.
       
 7. What kind of prevention should be adopted while company update its infrastructure?
-Ans7. Use smart vertified apps only.
-      Browse through secured websites.
-      Use secured internet connections (USE VPN).
-      Keep your mobile and laptop security updated.
-      Dont respond to unsolicited calls/SMS(s/E-mails) If you feel like you have been tricked or security compromised, contact your bank immidiately.
+Ans7. Enhanced Security Protocols: Implement multi-factor authentication, encryption, and secure communication channels.
+      Regular Monitoring and Audits: Continuously monitor transactions and conduct regular security audits.
+      Employee Training: Educate employees about fraud detection and prevention techniques.
+      Fraud Detection Systems: Implement advanced fraud detection systems using machine learning and AI.
+      Data Anonymization: Ensure customer data is anonymized to protect privacy.
+      Backup and Recovery Plans: Maintain robust backup and recovery systems to protect against data breaches.
       
 8. Assuming these actions have been implemented, how would you determine if they work?
-Ans8. Bank sending E-statements.
-      Customers keeping a check of their account activity.
-      Always keep a log of your payments.
+Ans8. Monitoring Key Metrics: Track metrics such as the number of fraudulent transactions detected, false positives, and false negatives.
+      Customer Feedback: Collect feedback from customers regarding any suspicious activities or improvements in security.
+      Security Audits: Conduct regular security audits to assess the effectiveness of the implemented measures.
+      Incident Reports: Monitor and analyze reports of security incidents to identify trends and areas for improvement.
+      Performance Benchmarks: Compare the current performance against previous benchmarks to evaluate the effectiveness of the new measures.
+      Compliance Checks: Ensure that all security measures comply with industry standards and regulations.
